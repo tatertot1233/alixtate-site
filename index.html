@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alix Tate</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --sand: #f0e8d8;
+    --sand-dark: #d4c9b0;
+    --earth: #8b6f47;
+    --earth-deep: #5c4530;
+    --forest: #3a4a35;
+    --forest-light: #4d6347;
+    --ember: #c4622d;
+    --smoke: #1a1612;
+    --cream: #faf6ee;
+    --text-warm: #2c2018;
+    --text-mid: #5a4a38;
+    --text-light: #8a7a68;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text-warm); overflow-x: hidden; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; height: 100vh; min-height: 600px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 6vw 8vh; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center 40%;
+    filter: brightness(0.72) saturate(1.1);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(18,12,6,0.88) 0%, rgba(18,12,6,0.45) 45%, rgba(18,12,6,0.1) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-tagline {
+    font-family: 'Jost', sans-serif; font-weight: 300;
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem); letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--sand-dark); margin-bottom: 1.2rem;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(4rem, 9vw, 8rem); line-height: 0.9;
+    color: var(--sand); letter-spacing: -0.01em; margin-bottom: 1.8rem;
+  }
+  .hero-name em { font-style: italic; color: #e8d5b0; }
+  .hero-descriptor {
+    font-family: 'Jost', sans-serif; font-weight: 300;
+    font-size: clamp(0.75rem, 1.1vw, 0.9rem); letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--sand-dark); opacity: 0.8;
+  }
+  .hero-descriptor span { margin: 0 0.8em; opacity: 0.4; }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; right: 6vw; z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--sand-dark); opacity: 0.5; font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .scroll-hint::after {
+    content: ''; display: block; width: 1px; height: 40px;
+    background: var(--sand-dark); opacity: 0.5;
+  }
+
+  /* ── SHARED ── */
+  section { padding: 8rem 6vw; }
+  .section-label {
+    font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.35em; text-transform: uppercase; color: var(--ember); margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--cream); display: grid;
+    grid-template-columns: 1fr 1.6fr; gap: 6vw; align-items: start;
+  }
+  .about-photo-wrap { position: relative; }
+  .about-photo {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center;
+    display: block; filter: sepia(0.08) contrast(1.05);
+  }
+  .about-photo-frame {
+    position: absolute; inset: 12px -12px -12px 12px;
+    border: 1px solid var(--sand-dark); z-index: -1;
+  }
+  .about-text { padding-top: 1rem; }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 300; line-height: 1.4;
+    color: var(--text-warm); margin-bottom: 2.5rem;
+    border-left: 2px solid var(--ember); padding-left: 1.5rem;
+  }
+  .about-body {
+    font-size: 1.05rem; line-height: 1.85; color: var(--text-mid); font-weight: 300;
+  }
+
+  /* ── CREDENTIALS ── */
+  .credentials { background: var(--smoke); color: var(--sand); }
+  .credentials .section-label { color: var(--ember); }
+  .credentials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem 4rem;
+  }
+  .cred-block { border-top: 1px solid rgba(240,232,216,0.15); padding-top: 1.5rem; }
+  .cred-era {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ember); margin-bottom: 0.8rem; font-weight: 500;
+  }
+  .cred-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300;
+    color: var(--sand); margin-bottom: 0.8rem; line-height: 1.2;
+  }
+  .cred-body { font-size: 0.9rem; line-height: 1.75; color: rgba(240,232,216,0.6); font-weight: 300; }
+
+  /* ── WORK ── */
+  .work { background: var(--cream); }
+  .work-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2px; margin-top: 1rem;
+  }
+  .work-card {
+    background: var(--sand); padding: 2.5rem 2rem;
+    border: 1px solid var(--sand-dark); transition: background 0.3s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .work-card:hover { background: #e8dfc8; }
+  .work-card-type {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ember); margin-bottom: 1rem; font-weight: 500;
+  }
+  .work-card-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300;
+    color: var(--text-warm); margin-bottom: 1rem; line-height: 1.1;
+  }
+  .work-card-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; }
+  .work-card-link {
+    display: inline-block; margin-top: 1.5rem; font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember); font-weight: 500;
+  }
+  .work-card-link::after { content: ' →'; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--earth-deep); text-align: center; padding: 10rem 6vw; }
+  .contact-pre {
+    font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--sand-dark); opacity: 0.6; margin-bottom: 2rem;
+  }
+  .contact-heading {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300; color: var(--sand); line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  .contact-body {
+    font-size: 0.95rem; color: var(--sand-dark); opacity: 0.7;
+    max-width: 480px; margin: 0 auto 3rem; line-height: 1.8; font-weight: 300;
+  }
+  .contact-email {
+    display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+    color: var(--sand); text-decoration: none;
+    border-bottom: 1px solid rgba(240,232,216,0.4); padding-bottom: 0.2em;
+    transition: border-color 0.3s, color 0.3s; letter-spacing: 0.05em;
+  }
+  .contact-email:hover { color: #f0c090; border-color: #f0c090; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--smoke); padding: 2rem 6vw;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    color: var(--sand-dark); opacity: 0.5; font-style: italic;
+  }
+  .footer-copy { font-size: 0.7rem; color: var(--sand-dark); opacity: 0.3; letter-spacing: 0.1em; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .about { grid-template-columns: 1fr; }
+    .about-photo-wrap { max-width: 320px; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tagline">Midwest USA &nbsp;·&nbsp; Worldwide</p>
+    <h1 class="hero-name">Alix<br><em>Tate</em></h1>
+    <p class="hero-descriptor">
+      Community Organizer
+      <span>·</span>
+      Philosopher
+      <span>·</span>
+      Edgewalker
+    </p>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-photo-wrap">
+    <img class="about-photo" id="portraitImg" src="Alix_Photo.jpg" alt="Alix Tate" />
+    <div class="about-photo-frame"></div>
+  </div>
+  <div class="about-text">
+    <p class="section-label">About</p>
+    <blockquote class="about-quote">
+      A former firefighter and EMT whose reality was blown apart when he confronted how broken the world truly was.
+    </blockquote>
+    <p class="about-body">
+      Driven by the legacy of his grandfather — a preacher who gave everything to his people — he spent over a decade scouring the earth for answers: visiting a quarter of the world's countries, living inside movements, cultures, and radical communities, looking for what actually works.
+    </p>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="credentials" id="credentials">
+  <p class="section-label">Life &amp; Experience</p>
+  <div class="credentials-grid">
+
+    <div class="cred-block">
+      <p class="cred-era">The Formation</p>
+      <h3 class="cred-title">Firefighter. EMT. Banker.</h3>
+      <p class="cred-body">Became a firefighter, EMT, and banker at 16. Then walked away from all of it when the world stopped making sense — and committed to figuring out what does.</p>
+    </div>
+
+    <div class="cred-block">
+      <p class="cred-era">The Search</p>
+      <h3 class="cred-title">India. The Pacific. The Road with Nothing.</h3>
+      <p class="cred-body">Found himself through yoga and meditation in India, then put it to the test when he sailed across the Pacific Ocean. Learned to live with almost nothing — spending most of his 20s without a phone and almost no money, dumpster diving, hitchhiking, and busking to get by.</p>
+    </div>
+
+    <div class="cred-block">
+      <p class="cred-era">The Organizing</p>
+      <h3 class="cred-title">Occupy. Rainbow Gatherings. People Power.</h3>
+      <p class="cred-body">Learned the power of people to self-organize in the General Assemblies as a dedicated organizer of Occupy Chicago, as well as Occupy Wall Street, DC, and Baltimore. Learned the possibilities of community while helping organize month-long World Rainbow Gatherings off-grid in the remote jungles of Indonesia, Taiwan, and Colombia.</p>
+    </div>
+
+    <div class="cred-block">
+      <p class="cred-era">Direct Action</p>
+      <h3 class="cred-title">Speaker. Teacher. Unlikely Politician.</h3>
+      <p class="cred-body">Became a public speaker in Australia, championing volunteer projects in Africa, Southeast Asia, and South America to thousands of students daily on college campuses. Taught mushroom foraging at Fungi Academy in Guatemala. Led yoga at a retreat in Koh Phangan, Thailand. In 2017 became US President of the first Bitcoin-powered direct democracy party when his political experiment merged with the Flux Party.</p>
+    </div>
+
+    <div class="cred-block">
+      <p class="cred-era">The Intellectual Work</p>
+      <h3 class="cred-title">Arendt Prize. Platform Cooperatives. Philosophy.</h3>
+      <p class="cred-body">Won the Hannah Arendt Foundation Writing Competition. Participant in the inaugural Platform Cooperative Consortium at The New School. Completed the <em>AI Without Bosses</em> certificate (2025). Delivered talks internationally on philosophy, religion, and political action. Fluent Spanish speaker.</p>
+    </div>
+
+    <div class="cred-block">
+      <p class="cred-era">The Building</p>
+      <h3 class="cred-title">Roots, Community &amp; Enterprise</h3>
+      <p class="cred-body">Founded and grew a successful small business. Helped produce music festivals as transformative community spaces. Co-founded a Men's group, created a regular ecstatic dance community, and initiated volunteer projects locally.</p>
+    </div>
+
+<div class="cred-block">
+      <p class="cred-era">Life Outside the Mission</p>
+      <h3 class="cred-title">Mind, Music & Movement</h3>
+      <p class="cred-body">An avid student of history, politics, and philosophy, with a sustained practice in conflict resolution and peace studies. Multi-instrumentalist and lifelong musician. Self-taught jack of all trades — mechanic, carpenter, and electrician. Fire performer and movement artist: juggling, poi, rope dart, handstands, and acroyoga. </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <p class="section-label">What I'm Working On</p>
+  <div class="work-grid">
+
+    <div class="work-card">
+      <p class="work-card-type">Memoir</p>
+      <h3 class="work-card-title">Edgewalker</h3>
+      <p class="work-card-desc">A life written from the edge — of institutions, of certainty, of the known world. <em>Edgewalker</em> traces one man's search for meaning across continents, movements, and philosophies, woven together with an unforgettable love story.</p>
+      <span class="work-card-link">Forthcoming</span>
+    </div>
+
+    <a class="work-card" href="https://theoryoftime.org" target="_blank" rel="noopener">
+      <p class="work-card-type">Philosophy Project</p>
+      <h3 class="work-card-title">The Theory of Time</h3>
+      <p class="work-card-desc">A decade-long philosophical framework synthesizing Philip Zimbardo's temporal psychology with the work of Roberto Mangabeira Unger and Lee Smolin — opening a new conversation about time, human agency, and civilizational possibility.</p>
+      <span class="work-card-link">Visit theoryoftime.org</span>
+    </a>
+
+    <div class="work-card">
+      <p class="work-card-type">Podcast · Forthcoming</p>
+      <h3 class="work-card-title">Connect the Dots</h3>
+      <p class="work-card-desc">A forthcoming conversation series with painter Luke Schroeder — tracing the hidden connections between ideas, movements, and the people who refuse to live inside the lines.</p>
+      <span class="work-card-link">Coming Soon</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="contact-pre">Get in Touch</p>
+  <h2 class="contact-heading">Let's build<br><em>something real.</em></h2>
+  <p class="contact-body">If you're a collaborator, journalist, fellow philosopher, or someone who simply wants to connect — the door is open.</p>
+  <a class="contact-email" href="mailto:connect@alixtate.com">connect@alixtate.com</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Alix Tate</span>
+  <span class="footer-copy">© 2026</span>
+</footer>
+
+<script>
+  // Set hero background — update path if your image filename differs
+  document.getElementById('heroBg').style.backgroundImage =
+    "url('Sunset_Arcata_Rainbow_Gathering_2023.jpg')";
+</script>
+
+</body>
+</html>
